@@ -6,15 +6,15 @@ const validCountries = require('../model/includes.json');
 
 
 const getPais = (data, code, anio) => {
-    const myCountry = data.find(country => country['Ciudad Cod'] === code.toUpperCase())
+    const myCountry = data.find(country => country['Country Code'] === code.toUpperCase())
     if (!myCountry) {
         throw new Error('El codigo de pais o el anio no son validos.')
     }
 
     return {
         valor: parseFloat(myCountry[anio]),
-        codigo: myCountry['Ciudad Cod'],
-        nombre: myCountry['Ciudad Nombre'],
+        codigo: myCountry['Country Code'],
+        nombre: myCountry['Country Name'],
         anio
     };
 }
@@ -40,13 +40,13 @@ const importCSV = async path => {
 
     let excludes = []
     csvData = csvData.filter(country => {
-        let isValid = validCodes.includes(country['Ciudad Cod'])
+        let isValid = validCodes.includes(country['Country Code'])
         if (isValid) {
             return country
         } else {
             excludes.push({
-                name: country['Ciudad Nombre'],
-                code: country['Ciudad Cod'],
+                name: country['Country Name'],
+                code: country['Country Code'],
             })
         }
     })
@@ -54,12 +54,12 @@ const importCSV = async path => {
 }
 
 const guardar = (datos, path) => {
-    let date = JSON.stringify(datos, null, 2);
+    let date = JSON.stringify('datos.csv', null, 2);
     path = `${path}.txt`
     fs.writeFile(path, date, (err) => {
         if (err) throw new Error('error en el path');
     });
-    console.log('archivo creado correctamente' + path);
+    console.log('El archivo se a creado' + path);
     open(path).catch(console.log)
 }
 

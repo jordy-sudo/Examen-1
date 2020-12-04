@@ -3,16 +3,16 @@ const { importCSV, getPais, guardar } = require('./buscador/buscar');
 
 let comand = argv._[0];
 let pais = argv.country
-let anio = argv.year
-let arch = argv.file
+let anio = argv.anio
+let arch = argv.documento
 let save = argv.out
 
 switch (comand) {
     case 'mostrar':
         let publicar = async() => {
             let datos = await importCSV(arch).catch(console.log);
-            let country = getPais(datos, pais, anio)
-            console.log(country);
+            let ciudad = getPais(datos, pais, anio)
+            console.log(ciudad);
         }
         publicar().then()
         break;
