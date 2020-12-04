@@ -54,7 +54,7 @@ const importCSV = async path => {
 }
 
 const guardar = (datos, path) => {
-    let date = JSON.stringify('datos.csv', null, 2);
+    let date = JSON.stringify(path, null, 2);
     path = `${path}.txt`
     fs.writeFile(path, date, (err) => {
         if (err) throw new Error('error en el path');

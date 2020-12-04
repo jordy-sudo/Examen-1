@@ -1,7 +1,7 @@
 const argv = require('yargs')
     .command('mostrar', 'Muestra los resultados', {
         documento: {
-            requiere: true,
+            require: true,
             alias: 'f',
             desc: 'Archivo CSV con datos a procesar '
         },
@@ -12,7 +12,7 @@ const argv = require('yargs')
             desc: 'Código del país que se requiere información'
         },
         anio: {
-            requiere: true,
+            require: true,
             alias: 'y',
             default: '1960',
             desc: 'Año que del que se busca información '
@@ -20,7 +20,7 @@ const argv = require('yargs')
     })
     .command('guardar', 'Guarda los resultados', {
         documento: {
-            requiere: true,
+            require: true,
             alias: 'f',
             desc: 'Permite establecer el path del archivo CSV que contiene los datos a analizar'
         },
@@ -31,13 +31,13 @@ const argv = require('yargs')
             desc: 'Permite determinar el país a analizar a través de su código ISO 3166 ALPHA-3. El valor por defecto es “ECU”.'
         },
         anio: {
-            requiere: true,
+            require: true,
             alias: 'y',
             default: '1960',
             desc: 'Permite especificar el año para el cual se requiere las estadísticas. Por defecto, 1960.'
         },
         out: {
-            requiere: false,
+            require: false,
             alias: 'o',
             desc: 'Establece el nombre del archivo donde se almacenará los resultados'
         }
