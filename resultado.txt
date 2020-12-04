@@ -1,6 +1,6 @@
 {
-  "suscripcion": 48.9404337892669,
+  "valor": 4.83444263759525,
   "codigo": "ECU",
   "nombre": "Ecuador",
-  "anio": 2015
+  "anio": 2004
 }

@@ -3,18 +3,18 @@ const csvToJson = require('csvtojson');
 const open = require('open');
 const chalk = require('chalk');
 const validCountries = require('../model/includes.json');
-const path = require('./data.csv')
+
 
 const getPais = (data, code, anio) => {
-    const myCountry = data.find(country => country['Country Code'] === code.toUpperCase())
+    const myCountry = data.find(country => country['Ciudad Cod'] === code.toUpperCase())
     if (!myCountry) {
         throw new Error('El codigo de pais o el anio no son validos.')
     }
 
     return {
         valor: parseFloat(myCountry[anio]),
-        codigo: myCountry['Country Code'],
-        nombre: myCountry['Country Name'],
+        codigo: myCountry['Ciudad Cod'],
+        nombre: myCountry['Ciudad Nombre'],
         anio
     };
 }
@@ -22,8 +22,8 @@ const getPais = (data, code, anio) => {
 const importCSV = async path => {
 
     const validCodes = validCountries.p_codigo;
-    const csvFile = await fs.readFile(path, 'utf-8')
-        .catch(err => { throw new Error('El archivo no se encuentra.') })
+    const csvFile = await fs.readFile('datos.csv', 'utf-8')
+        .catch(err => { throw new Error('El archivo no existe') })
 
     let lines = csvFile.split(/\r?\n/);
     let csvString = ''
@@ -40,13 +40,13 @@ const importCSV = async path => {
 
     let excludes = []
     csvData = csvData.filter(country => {
-        let isValid = validCodes.includes(country['Country Code'])
+        let isValid = validCodes.includes(country['Ciudad Cod'])
         if (isValid) {
             return country
         } else {
             excludes.push({
-                name: country['Country Name'],
-                code: country['Country Code'],
+                name: country['Ciudad Nombre'],
+                code: country['Ciudad Cod'],
             })
         }
     })
